@@ -1,5 +1,6 @@
 package app.getxray.xray;
 
+import io.github.pixee.security.ZipSecurity;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -138,7 +139,7 @@ public class CommonUtils {
     public static void unzipContentsToFolder(InputStream zippedContents, String outputFolder) throws IOException {
         File destDir = new File(outputFolder);
         byte[] buffer = new byte[1024];
-        ZipInputStream zis = new ZipInputStream(new BufferedInputStream(zippedContents));
+        ZipInputStream zis = ZipSecurity.createHardenedInputStream(new BufferedInputStream(zippedContents));
         ZipEntry zipEntry;
         while ((zipEntry = zis.getNextEntry()) != null) {
             File newFile = newFile(destDir, zipEntry);
