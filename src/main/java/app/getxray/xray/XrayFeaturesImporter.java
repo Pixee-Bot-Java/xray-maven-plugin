@@ -296,7 +296,7 @@ public class XrayFeaturesImporter {
             if (inputFile.isDirectory()) {
                 mediaType = MEDIA_TYPE_ZIP;
                 File tempDir = Files.createTempDirectory(TEMP_DIR_PREFIX).toFile();
-                File tempZip = File.createTempFile("dummy", ".zip", tempDir);
+                File tempZip = Files.createTempFile(tempDir.toPath(), "dummy", ".zip").toFile();
                 zipDirectory(inputPath, tempZip.getAbsolutePath());
                 inputFile = tempZip;
             } else {
@@ -368,7 +368,7 @@ public class XrayFeaturesImporter {
             mediaType = MEDIA_TYPE_ZIP;
             if (inputFile.isDirectory()) {
                 File tempDir = Files.createTempDirectory(TEMP_DIR_PREFIX).toFile();
-                File tempZip = File.createTempFile("dummy", ".zip", tempDir);
+                File tempZip = Files.createTempFile(tempDir.toPath(), "dummy", ".zip").toFile();
                 zipDirectory(inputPath, tempZip.getAbsolutePath());
                 inputFile = tempZip;
             }
